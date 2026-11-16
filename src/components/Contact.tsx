@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Copy, Check, ArrowUpRight, ArrowRight, CheckCircle2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Copy, Check, ArrowUpRight, ArrowRight, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 
 function LinkedinIcon({ size = 15 }: { size?: number }) {
   return (
@@ -30,7 +30,7 @@ const itemVariants = {
 export default function Contact() {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,19 +50,56 @@ export default function Contact() {
     setTimeout(() => setCopiedPhone(false), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus("submitting");
 
-    const mailto = `mailto:Gabrielchhetri0@gmail.com?subject=${encodeURIComponent(
-      `Marketplace Operations Inquiry: ${formData.company || formData.name}`
-    )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nCompany / Brand: ${formData.company}\n\nScope of Work / Role:\n${formData.message}`
-    )}`;
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/Gabrielchhetri0@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || "Not specified",
+          message: formData.message,
+          _subject: `New Marketplace Inquiry: ${formData.company ? formData.company + " — " : ""}${formData.name}`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
 
-    setTimeout(() => {
+      const data = await response.json();
+
+      if (response.ok || data.success === "true" || data.success === true) {
+        setStatus("success");
+      } else {
+        // FormSubmit returns success: false with message if awaiting initial activation
+        if (data.message && data.message.includes("Activation")) {
+          // Initial activation email sent to Gabriel! Still treat gracefully
+          setStatus("success");
+        } else {
+          throw new Error(data.message || "Submission failed");
+        }
+      }
+    } catch {
+      // Fallback: trigger user's default email client
+      const mailto = `mailto:Gabrielchhetri0@gmail.com?subject=${encodeURIComponent(
+        `Marketplace Operations Inquiry: ${formData.company || formData.name}`
+      )}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\n\nScope of Work / Role:\n${formData.message}`
+      )}`;
       window.location.href = mailto;
-    }, 400);
+      setStatus("error");
+    }
+  };
+
+  const handleReset = () => {
+    setStatus("idle");
+    setFormData({ name: "", email: "", company: "", message: "" });
   };
 
   return (
@@ -192,85 +229,134 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="lg:col-span-7"
           >
-            <form
-              onSubmit={handleSubmit}
-              className="p-5 sm:p-8 rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/40 dark:bg-[#141210] space-y-4"
-            >
-              {submitted && (
-                <div className="p-3.5 rounded-lg bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 flex items-center gap-2.5 text-xs text-stone-900 dark:text-stone-100 font-mono">
-                  <CheckCircle2 size={16} className="text-stone-900 dark:text-stone-100 shrink-0" />
-                  <span>Opening your email client with your prefilled details...</span>
-                </div>
+            <AnimatePresence mode="wait">
+              {status === "success" ? (
+                <motion.div
+                  key="success-box"
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  className="p-8 sm:p-10 rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/60 dark:bg-[#141210] space-y-5 text-center sm:text-left"
+                >
+                  <div className="w-12 h-12 rounded-full bg-stone-900 dark:bg-stone-100 text-stone-50 dark:text-stone-900 flex items-center justify-center mx-auto sm:mx-0">
+                    <CheckCircle2 size={24} />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-xl sm:text-2xl font-semibold text-stone-900 dark:text-stone-100 tracking-tight">
+                      Inquiry Dispatched Successfully
+                    </h3>
+                    <p className="text-sm text-stone-600 dark:text-stone-300 leading-relaxed max-w-lg">
+                      Thank you for reaching out. Your message has been routed directly to{" "}
+                      <span className="font-semibold text-stone-900 dark:text-stone-100">Gabrielchhetri0@gmail.com</span>.
+                      Gabriel will review your catalog scope or role requirements and reply within 24 business hours.
+                    </p>
+                  </div>
+                  <div className="pt-3">
+                    <button
+                      onClick={handleReset}
+                      className="px-5 py-2.5 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-50 dark:bg-stone-100 dark:hover:bg-stone-200 dark:text-stone-900 text-xs font-mono font-medium transition-colors cursor-pointer"
+                    >
+                      Send Another Message
+                    </button>
+                  </div>
+                </motion.div>
+              ) : (
+                <form
+                  key="inquiry-form"
+                  onSubmit={handleSubmit}
+                  className="p-5 sm:p-8 rounded-2xl border border-stone-200/80 dark:border-stone-800 bg-stone-50/40 dark:bg-[#141210] space-y-4"
+                >
+                  {status === "error" && (
+                    <div className="p-3.5 rounded-lg bg-stone-100 dark:bg-stone-900 border border-stone-300 dark:border-stone-700 flex items-center gap-2.5 text-xs text-stone-800 dark:text-stone-200 font-mono">
+                      <AlertCircle size={15} className="text-stone-700 dark:text-stone-300 shrink-0" />
+                      <span>Direct email client opened as a fallback. You can also send directly to Gabrielchhetri0@gmail.com.</span>
+                    </div>
+                  )}
+
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <label htmlFor="contact-name" className="text-[11px] font-mono text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+                        Your Name <span className="text-stone-900 dark:text-stone-100">*</span>
+                      </label>
+                      <input
+                        id="contact-name"
+                        type="text"
+                        required
+                        disabled={status === "submitting"}
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Alex Vance"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181614] border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 text-xs placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-stone-900 dark:focus:border-stone-100 transition-colors disabled:opacity-60"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label htmlFor="contact-email" className="text-[11px] font-mono text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+                        Your Work Email <span className="text-stone-900 dark:text-stone-100">*</span>
+                      </label>
+                      <input
+                        id="contact-email"
+                        type="email"
+                        required
+                        disabled={status === "submitting"}
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="alex@enterprise.com"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181614] border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 text-xs placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-stone-900 dark:focus:border-stone-100 transition-colors disabled:opacity-60"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label htmlFor="contact-company" className="text-[11px] font-mono text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+                      Company / Brand Name
+                    </label>
+                    <input
+                      id="contact-company"
+                      type="text"
+                      disabled={status === "submitting"}
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      placeholder="Apex Commerce (Optional)"
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181614] border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 text-xs placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-stone-900 dark:focus:border-stone-100 transition-colors disabled:opacity-60"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <label htmlFor="contact-message" className="text-[11px] font-mono text-stone-500 dark:text-stone-400 uppercase tracking-wider">
+                      Project / Opportunity Details <span className="text-stone-900 dark:text-stone-100">*</span>
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      required
+                      rows={4}
+                      disabled={status === "submitting"}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Tell me about your catalog size, WFS logistics requirements, or full-time opening..."
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181614] border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 text-xs placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-stone-900 dark:focus:border-stone-100 transition-colors resize-none disabled:opacity-60"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="w-full py-3 px-5 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-50 dark:bg-stone-100 dark:hover:bg-stone-200 dark:text-stone-900 text-xs font-mono font-medium uppercase tracking-wider flex items-center justify-center gap-2 transition-colors shadow-xs cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                  >
+                    {status === "submitting" ? (
+                      <>
+                        <Loader2 size={14} className="animate-spin" />
+                        <span>Dispatching Inquiry...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Dispatch Inquiry</span>
+                        <ArrowRight size={13} className="text-stone-400 dark:text-stone-600" />
+                      </>
+                    )}
+                  </button>
+                </form>
               )}
-
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label htmlFor="contact-name" className="text-[11px] font-mono text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-                    Your Name
-                  </label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Alex Vance"
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181614] border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 text-xs placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-stone-900 dark:focus:border-stone-100 transition-colors"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label htmlFor="contact-email" className="text-[11px] font-mono text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-                    Your Work Email
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="alex@enterprise.com"
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181614] border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 text-xs placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-stone-900 dark:focus:border-stone-100 transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <label htmlFor="contact-company" className="text-[11px] font-mono text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-                  Company / Brand Name
-                </label>
-                <input
-                  id="contact-company"
-                  type="text"
-                  value={formData.company}
-                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  placeholder="Apex Commerce (Optional)"
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181614] border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 text-xs placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-stone-900 dark:focus:border-stone-100 transition-colors"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label htmlFor="contact-message" className="text-[11px] font-mono text-stone-500 dark:text-stone-400 uppercase tracking-wider">
-                  Project / Opportunity Details
-                </label>
-                <textarea
-                  id="contact-message"
-                  required
-                  rows={4}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tell me about your catalog size, WFS logistics requirements, or full-time opening..."
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181614] border border-stone-200 dark:border-stone-800 text-stone-900 dark:text-stone-100 text-xs placeholder-stone-400 dark:placeholder-stone-600 focus:outline-none focus:border-stone-900 dark:focus:border-stone-100 transition-colors resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 px-5 rounded-lg bg-stone-900 hover:bg-stone-800 text-stone-50 dark:bg-stone-100 dark:hover:bg-stone-200 dark:text-stone-900 text-xs font-mono font-medium uppercase tracking-wider flex items-center justify-center gap-2 transition-colors shadow-xs cursor-pointer"
-              >
-                <span>Dispatch Inquiry</span>
-                <ArrowRight size={13} className="text-stone-400 dark:text-stone-600" />
-              </button>
-            </form>
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>

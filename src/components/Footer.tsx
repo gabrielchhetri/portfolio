@@ -77,7 +77,7 @@ export default function Footer() {
             <LinkedinIcon size={14} />
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/gabrielchhetri"
             target="_blank"
             rel="noopener noreferrer"
             className="text-stone-400 dark:text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"

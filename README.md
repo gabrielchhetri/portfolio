@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gabriel Chhetri — Marketplace Operations Portfolio
 
-## Getting Started
+> Enterprise Marketplace Operations Specialist (Walmart & WFS) • Scaled accounts from $300K to $1.5M+ (7-Figure GMV) in 3 years.
 
-First, run the development server:
+## 📌 Overview
+
+This repository houses the professional portfolio of **Gabriel Chhetri**, Junior Business Analyst — Marketplace Operations at **Whole9yards Global Ecom**. Built with an editorial warm stone design system, zero-flash dark mode, spring-staggered Framer Motion animations, and hardened Next.js 16 architecture.
+
+* **Portfolio Live Preview**: Available locally at `http://localhost:3000` (and ready for 1-click Vercel deployment)
+* **LinkedIn**: [linkedin.com/in/gabriel-chhetri-729392187](https://linkedin.com/in/gabriel-chhetri-729392187)
+* **Email**: Gabrielchhetri0@gmail.com
+* **Phone / WhatsApp**: +91 8167891199
+
+---
+
+## 🛠️ Tech Stack & Engineering
+
+* **Framework**: [Next.js 16](https://nextjs.org/) (App Router, Turbopack)
+* **Language**: [TypeScript](https://www.typescriptlang.org/)
+* **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Inline theme tokens, stone editorial palette)
+* **Animation**: [Framer Motion](https://www.framer.com/motion/) (Scroll-driven parallax, spring reading bar, staggered viewport reveals)
+* **Typography**: Geist & Geist Mono via `next/font`
+* **Icons**: [Lucide React](https://lucide.dev/) + Inline brand vectors
+* **Security**: Hardened HTTP response headers (`X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Strict-Transport-Security`, `Permissions-Policy`, disabled `X-Powered-By`)
+
+---
+
+## 🚀 Key Highlights & Sections
+
+1. **Editorial Hero**: Parallax scroll depth, operational KPI strip ($300K → $1.5M scale, 1,500+ SKUs, >94% Buy Box), infinite capability marquee.
+2. **Profile & Approach**: Operational narratives, multilingual reach (English, Hindi, Nepali, Mizo), <24h listing suppression SLA.
+3. **The Marketplace Architecture**: 4 operational competencies (Catalog feeds, Buy Box repricing, WFS multi-FC logistics, Python/Excel analytics).
+4. **Selected Case Studies**: 7 verified outcomes with interactive category filtering.
+5. **Career Track Record & Qualifications**: Experience breakdown at Whole9yards Global Ecom, academic foundation (IGNOU BA Psychology Hons., NIOS), Google AI Essentials & Data Analytics certifications.
+6. **Direct Consultation & Dispatch**: Interactive contact form with status feedback and direct email copy.
+
+---
+
+## 💻 Local Development
+
+Clone and install dependencies:
 
 ```bash
+git clone https://github.com/gabrielchhetri/portfolio.git
+cd portfolio
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📄 License & Ownership
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Designed and maintained by **Gabriel Chhetri**. All rights reserved.

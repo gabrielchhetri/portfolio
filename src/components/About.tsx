@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const languages = [
@@ -76,8 +77,36 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Right Column: Languages & Working Standards */}
+          {/* Right Column: Portrait, Languages & Working Standards */}
           <div className="lg:col-span-5 space-y-8 sm:space-y-10">
+            {/* Editorial Portrait Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative aspect-[4/5] w-full max-w-sm rounded-2xl overflow-hidden border border-stone-200/80 dark:border-stone-800 bg-stone-100 dark:bg-stone-900 group shadow-xs"
+            >
+              <Image
+                src="/gabriel.jpg"
+                alt="Gabriel Chhetri — Marketplace Operations Specialist"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 380px"
+                className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent pointer-events-none" />
+              <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-xs font-mono text-stone-200 pointer-events-none">
+                <div>
+                  <div className="font-semibold text-white text-sm tracking-tight">Gabriel Chhetri</div>
+                  <div className="text-[11px] text-stone-300">Junior Business Analyst — Whole9yards</div>
+                </div>
+                <span className="px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/25 text-[10px] text-white font-medium">
+                  On-site • Active
+                </span>
+              </div>
+            </motion.div>
+
             {/* Multilingual Fluency with Staggered Rows */}
             <motion.div
               variants={containerVariants}

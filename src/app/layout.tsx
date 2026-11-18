@@ -50,12 +50,21 @@ export const metadata: Metadata = {
     description:
       "Scaling Walmart accounts from $300K to $1.5M+, managing 1,500+ SKU catalogs, WFS fulfillment, and Buy Box optimization.",
     siteName: "Gabriel Chhetri Portfolio",
+    images: [
+      {
+        url: "/gabriel.jpg",
+        width: 800,
+        height: 1000,
+        alt: "Gabriel Chhetri — Marketplace Operations Specialist",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Gabriel Chhetri — Marketplace Operations Specialist",
     description:
       "Scaling Walmart accounts from $300K to $1.5M+, managing 1,500+ SKU catalogs, WFS fulfillment, and Buy Box optimization.",
+    images: ["/gabriel.jpg"],
   },
 };
 

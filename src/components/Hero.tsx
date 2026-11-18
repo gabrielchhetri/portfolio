@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, ArrowUpRight, FileText } from "lucide-react";
 
@@ -40,15 +41,25 @@ export default function Hero() {
         style={{ opacity: contentOpacity, y: contentY }}
         className="max-w-5xl mx-auto"
       >
-        {/* Top Operational Status Pill */}
+        {/* Top Operational Status Pill with Portrait Avatar */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2.5 text-xs font-mono text-stone-500 dark:text-stone-400 mb-6 sm:mb-8"
+          className="inline-flex items-center gap-2.5 text-xs font-mono text-stone-500 dark:text-stone-400 mb-6 sm:mb-8 p-1 pr-3.5 rounded-full border border-stone-200/80 dark:border-stone-800 bg-white/70 dark:bg-[#141210]/70 backdrop-blur-sm"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-stone-900 dark:bg-stone-100 animate-pulse" />
-          <span className="uppercase tracking-widest text-[10px] sm:text-[11px] text-stone-600 dark:text-stone-300">
+          <div className="relative w-6 h-6 rounded-full overflow-hidden border border-stone-300 dark:border-stone-700 shrink-0">
+            <Image
+              src="/gabriel.jpg"
+              alt="Gabriel Chhetri"
+              fill
+              className="object-cover object-top"
+              sizes="24px"
+              priority
+            />
+          </div>
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="uppercase tracking-widest text-[10px] sm:text-[11px] text-stone-700 dark:text-stone-300 font-medium">
             Marketplace Operations Specialist • Whole9yards Global Ecom
           </span>
         </motion.div>

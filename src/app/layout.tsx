@@ -26,18 +26,18 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gabrielchhetri.com"),
-  title: "Gabriel Chhetri — Marketplace Operations Specialist (Walmart & WFS)",
+  title: "Gabriel Chhetri — E-Commerce Specialist | Marketplace & Inventory Operations",
   description:
-    "Over 3 years managing high-volume Walmart Marketplace accounts, scaling from $300K to $1.5M (7-figure GMV), WFS inbound logistics, 1,500+ SKU catalogs, and algorithmic Buy Box optimization.",
+    "Results-driven E-Commerce Specialist with 3+ years managing Walmart Marketplace accounts, scaling from $300K to $1.5M (7-figure GMV), 1,500+ SKU catalogs, and WFS logistics.",
   keywords: [
     "Gabriel Chhetri",
+    "E-Commerce Specialist",
     "Walmart Marketplace Specialist",
     "Walmart Seller Center",
     "WFS Logistics",
     "Marketplace Operations",
     "Catalog Architecture",
     "Buy Box Optimization",
-    "Ecommerce Specialist",
     "Whole9yards Global Ecom",
     "7-Figure Marketplace Scaling",
   ],
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Gabriel Chhetri — Marketplace Operations Specialist",
+    title: "Gabriel Chhetri — E-Commerce Specialist | Marketplace & Inventory Operations",
     description:
-      "Scaling Walmart accounts from $300K to $1.5M+, managing 1,500+ SKU catalogs, WFS fulfillment, and Buy Box optimization.",
+      "Results-driven E-Commerce Specialist with 3+ years managing Walmart accounts, scaling from $300K to $1.5M+, 1,500+ SKU catalogs, and WFS logistics.",
     siteName: "Gabriel Chhetri Portfolio",
     images: [
       {

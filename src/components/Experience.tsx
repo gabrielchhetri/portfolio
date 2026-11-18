@@ -7,32 +7,34 @@ const workExperience = [
   {
     company: "Whole9yards Global Ecom",
     role: "Junior Business Analyst — Marketplace Operations",
-    period: "Jan 2023 — Present",
+    period: "Jan 2023 — Oct 2026",
     location: "On-site",
-    badge: "Active Engagement",
+    badge: "3+ Years Track Record",
     summary:
-      "End-to-end operational ownership of enterprise Walmart Marketplace accounts. Spearheaded catalog architecture across 1,500+ active SKUs and WFS fulfillment logistics, scaling annual sales from $300,000 in Year 1 to over $1.5 million (7-figure GMV) in Year 3.",
+      "End-to-end operational ownership of enterprise Walmart Marketplace accounts. Spearheaded catalog architecture across 1,500+ active SKUs, inventory replenishment, and competitive pricing strategies, scaling annual sales from $300,000 in Year 1 to over $1.5 million (7-figure GMV) in Year 3.",
     pillars: [
       {
-        title: "WFS Supply Chain & Inbound Operations",
+        title: "E-Commerce, Catalog & Storefront Operations",
         points: [
-          "Coordinating end-to-end WFS inventory allocation, shipment creation, carton labeling, and receiving tracking across regional fulfillment centers.",
-          "Analyzing 7-day and 30-day sell-through curves, warehouse capacity limits, and lead times to avoid out-of-stock search ranking penalties.",
+          "Managed end-to-end marketplace operations across a 1,500+ SKU catalog, supervising bulk flat-file uploads, listing maintenance, attribute mapping, and schema validation.",
+          "Diagnosed and resolved listing suppressions, catalog errors, feed failures, and inventory discrepancies through structured QA workflows under a strict <24h SLA.",
+          "Partnered with cross-functional teams to prioritize high-performing SKUs, execute promotional catalog updates, and standardize operational workflows.",
         ],
       },
       {
-        title: "1,500+ SKU Catalog & Feed Governance",
+        title: "Pricing Strategy & Buy Box Competitiveness",
         points: [
-          "Supervising bulk batch flat files, listing ingestion, attribute mapping, and category taxonomy compliance in Walmart Seller Center.",
-          "Rapidly triaging and resolving listing suppressions, feed errors, and broken parent-child variant structures within a strict 24h SLA.",
+          "Scaled top-line marketplace revenue 5x from $300K initial run-rate to $1.5M+ annual GMV milestone while preserving contribution profit margins.",
+          "Set, monitored, and adjusted product pricing in alignment with industry trends, competitive benchmarks, and automated repricing rules to defend Buy Box share above 94%.",
+          "Audited product titles, detailed descriptions, specifications, and content completeness using non-technical SEO to maximize search ranking and conversion.",
         ],
       },
       {
-        title: "Growth, Pricing & Buy Box Optimization",
+        title: "WFS Supply Chain, Inventory & KPI Reporting",
         points: [
-          "Drove 5x top-line scale from $300K initial run-rate to $1.5M+ annual GMV milestone through systematic Buy Box defense and catalog quality upgrades.",
-          "Administering automated repricing strategies and competitor price parity monitoring to defend Buy Box share above 94%.",
-          "Auditing product titles, backend keywords, and rich media attributes to maximize organic algorithm indexation and consumer conversion.",
+          "Tracked inventory levels, 7-day and 30-day sell-through curves, and sales velocity; coordinated shipment planning and multi-FC inbound workflows with suppliers and logistics partners.",
+          "Formulated dynamic buffer reorder points and monitored warehouse capacity constraints to minimize stockout risks and protect organic search rank.",
+          "Monitored e-commerce KPIs—including sales performance, conversion metrics, listing health, and stock movement—in MS Excel, Google Sheets, and ERP/EMS systems.",
         ],
       },
     ],
@@ -111,7 +113,7 @@ export default function Experience() {
             </h2>
           </div>
           <p className="text-sm text-stone-500 dark:text-stone-400 max-w-sm font-mono">
-            3+ years in high-velocity marketplace analytics and inventory operations.
+            3+ years in high-velocity marketplace analytics, catalog governance, and inventory operations.
           </p>
         </div>
 
@@ -255,7 +257,7 @@ export default function Experience() {
                 Official Curriculum Vitae (PDF)
               </div>
               <div className="text-[11px] text-stone-500 dark:text-stone-400 font-mono">
-                Complete career trajectory, Walmart SKU case metrics & academic history
+                Updated October 2026 • 1,500+ SKU case metrics, WFS logistics & academic record
               </div>
             </div>
           </div>
@@ -267,7 +269,7 @@ export default function Experience() {
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-50 dark:bg-stone-100 dark:hover:bg-stone-200 dark:text-stone-900 text-xs font-mono font-medium transition-colors shrink-0"
           >
             <Download size={13} className="text-stone-400 dark:text-stone-600" />
-            <span>Download Resume PDF</span>
+            <span>Download Updated Resume</span>
           </a>
         </div>
       </div>

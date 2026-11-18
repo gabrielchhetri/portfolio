@@ -102,7 +102,7 @@ export default function About() {
                   <div className="text-[11px] text-stone-300">Junior Business Analyst — Whole9yards</div>
                 </div>
                 <span className="px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/25 text-[10px] text-white font-medium">
-                  On-site • Active
+                  On-site • 3+ Years Exp.
                 </span>
               </div>
             </motion.div>

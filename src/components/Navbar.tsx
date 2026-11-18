@@ -90,7 +90,7 @@ export default function Navbar() {
             </span>
             <span className="hidden sm:inline">Gabriel Chhetri</span>
             <span className="hidden lg:inline text-stone-400 dark:text-stone-500 font-normal font-mono text-[11px]">
-              / Marketplace Ops
+              / E-Commerce & Marketplace Ops
             </span>
           </a>
 

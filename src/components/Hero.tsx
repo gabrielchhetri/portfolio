@@ -60,7 +60,7 @@ export default function Hero() {
           </div>
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
           <span className="uppercase tracking-widest text-[10px] sm:text-[11px] text-stone-700 dark:text-stone-300 font-medium">
-            Marketplace Operations Specialist • Whole9yards Global Ecom
+            E-Commerce & Marketplace Specialist • Whole9yards (3+ Years)
           </span>
         </motion.div>
 

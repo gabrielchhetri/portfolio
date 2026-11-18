@@ -41,13 +41,17 @@ const technicalStack = [
   "Walmart Seller Center",
   "Walmart Fulfillment Services (WFS)",
   "Microsoft Excel (XLOOKUP, Pivots)",
+  "Google Sheets & Workspace",
   "Python (Pandas, Data Cleaning)",
-  "ChatGPT / Claude 3.5 / Gemini",
-  "Google Workspace & Sheets",
+  "ERP / EMS & Inventory Tracking",
+  "Account Health & Compliance",
+  "Product Listing & Copywriting SEO",
+  "ChatGPT / Claude / Gemini",
+  "Supplier & Inbound Logistics",
   "Competitor Repricing Engines",
   "Batch Spec Flat Files",
-  "Inventory Replenishment Models",
-  "Listing Quality Score (LQS) Optimization",
+  "Inventory Velocity Modeling",
+  "GitHub",
 ];
 
 const containerVariants = {

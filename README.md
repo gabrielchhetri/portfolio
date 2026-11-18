@@ -4,7 +4,7 @@
 
 ## 📌 Overview
 
-This repository houses the professional portfolio of **Gabriel Chhetri**, Junior Business Analyst — Marketplace Operations at **Whole9yards Global Ecom**. Built with an editorial warm stone design system, zero-flash dark mode, spring-staggered Framer Motion animations, and hardened Next.js 16 architecture.
+This repository houses the professional portfolio of **Gabriel Chhetri**, E-Commerce & Marketplace Operations Specialist (formerly Junior Business Analyst at **Whole9yards Global Ecom**, Jan 2023 – Oct 2026). Built with an editorial warm stone design system, zero-flash dark mode, spring-staggered Framer Motion animations, and hardened Next.js 16 architecture.
 
 * **Portfolio Live Preview**: Available locally at `http://localhost:3000` (and ready for 1-click Vercel deployment)
 * **LinkedIn**: [linkedin.com/in/gabriel-chhetri-729392187](https://linkedin.com/in/gabriel-chhetri-729392187)
